@@ -25,24 +25,12 @@ contract PoopToEarn is Ownable {
     }
 
     // manage contract (owner)
-    function setToken(address newAddr) external onlyOwner {
-        token = IERC20(newAddr);
-    }
-    function setNFT(address newAddr) external onlyOwner {
-        nft = IERC721(newAddr);
-    }
-    function setClaimAmount(uint newAmount) external onlyOwner {
-        claimAmount = newAmount;
-    }
-    function setBonusAmount(uint newAmount) external onlyOwner {
-        bonusAmount = newAmount;
-    }
-    function setCooldown(uint newCooldown) external onlyOwner {
-        cooldown = newCooldown;
-    }
-    function toggleClaim() external onlyOwner {
-        claimActive = !claimActive;
-    }
+    function setToken(address _addr) external onlyOwner { token = IERC20(_addr); }
+    function setNFT(address _addr) external onlyOwner { nft = IERC721(_addr); }
+    function setClaimAmount(uint _amount) external onlyOwner { claimAmount = _amount; }
+    function setBonusAmount(uint _amount) external onlyOwner { bonusAmount = _amount; }
+    function setCooldown(uint _cooldown) external onlyOwner { cooldown = _cooldown; }
+    function toggleClaim() external onlyOwner { claimActive = !claimActive; }
     function withdraw() external onlyOwner {
         uint balance = token.balanceOf(address(this));
         require(balance > 0, "No token to withdraw.");
