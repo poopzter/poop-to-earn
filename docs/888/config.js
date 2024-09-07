@@ -13,4 +13,4 @@ const TOKEN_DECIMALS  = 18;
 const MINT_GAS_RATE   = 1;
 
 // twitter
-const TWEET_TEXT      = null;
+const TWEET_TEXT      = `I just claimed $BLOBZ airdrop from @BLOBz4844 via @poopzter shit-to-earn! 💩 Claim yours before it's too late https://poopzter.app/`;
