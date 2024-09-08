@@ -9,6 +9,7 @@ let raw_chain_id = null;
 // main
 let tweet_modal = new bootstrap.Modal($('.modal')[0]);
 $('.btn-tweet').attr('href', 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(TWEET_TEXT));
+$('#bridge').click(_ => window.open('https://app.optimism.io/bridge/deposit'));
 
 // enable tooltips
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
@@ -44,12 +45,13 @@ $('#connect').click(async _ => {
 
   // update connect/disconnect buttons
   hide_connect();
+  $('#bridge').addClass('d-none');
   show_disconnect();
 
   // update claim button
   let msg = 'Nothing to claim';
   if (qty > 0)  {
-    msg = `Claim ${qty.toLocaleString()} ${TOKEN_SYMBOL}`;
+    msg = `Claim ${format_num(qty)} ${TOKEN_SYMBOL}`;
     //play_party_effect();
   }
   $('#claim')
@@ -59,6 +61,8 @@ $('#connect').click(async _ => {
 $('#disconnect').click(_ => {
   $('#connect')
     .removeClass('disabled')
+    .removeClass('d-none');
+  $('#bridge')
     .removeClass('d-none');
   $('#claim')
     .removeClass('disabled')
@@ -249,6 +253,7 @@ function format_num(num, digits=2) {
     abb = 'M';
   }
   num = num.toLocaleString('en-US', { maximumFractionDigits: digits });
+  if (num.endsWith('.0')) num = num.slice(0, -2); // 123.0 -> 123
   return `${num}${abb}`;
 }
 function show_msg(msg, auto=false) {

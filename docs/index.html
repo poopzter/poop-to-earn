@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,32 +33,24 @@
     <link href="/888/app.css" rel="stylesheet">
   </head>
   <body class="d-flex justify-content-center align-items-center">
-    <div class="card" style="width: 20rem; height: fit-content;">
-      <img src="/888/asset.png" class="card-img-top">
-      <div class="card-body">
-        <!-- collection name -->
-        <h5 class="card-title links mt-0">POOPZTER shit-to-earn
-          <!-- chain -->
-          <img data-bs-toggle="tooltip" data-bs-title="OP Mainnet" src="https://optimistic.etherscan.io/assets/generic/html/favicon.ico">
-          <!-- contract -->
-          <a data-bs-toggle="tooltip" data-bs-title="Contract" href="https://optimistic.etherscan.io/address/0xe977f3e90f4bee490e8eaea73d15df2d00c36db5" target="_blank"><img src="https://etherscan.io/images/favicon3.ico"></a>
-          <!-- token -->
-          <a data-bs-toggle="tooltip" data-bs-title="Token" href="https://optimistic.etherscan.io/address/0x3AA14Ed2d1A65a58DF0237fA84239F97fF4E9B42" target="_blank"><img src="https://optimistic.etherscan.io/assets/optimism/images/svg/empty-token.svg?v=24.5.3.0"></a>
-        </h5>
-        <!-- description -->
-        <p class="card-text">Earn $BLOBZ every 60 seconds!</p>
-        <a id="connect" class="btn btn-primary w-100">Connect Wallet</a>
-        <a id="claim" class="btn btn-primary w-100 d-none">Claim</a>
-        <button id="claiming" class="btn btn-primary w-100 d-none" type="button" disabled>
-          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-          Processing
-        </button>
-        <a id="msg" class="btn btn-primary w-100 d-none disabled"></a>
-        <div id="balance" class="text-center d-none">Balance 9999 $BLOBz</div>
-        <div class="text-center mt-2"><a id="disconnect" class="text-secondary-emphasis d-none" role="button">Disconnect 0xabc..789</a></div>
+    <div class="app" style="width: 20rem; height: fit-content;">
+      <img class="logo" src="/888/assets/poopzter logo.svg">
+      <div class="logo-sub">shit-to-earn</div>
+      <div class="links">
+        <img data-bs-toggle="tooltip" data-bs-title="OP Mainnet" src="/888/assets/OP logo.svg">
+        <a data-bs-toggle="tooltip" data-bs-title="Contract" href="https://optimistic.etherscan.io/address/0xe977f3e90f4bee490e8eaea73d15df2d00c36db5" target="_blank"><img src="/888/assets/Etherscan logo.svg"></a>
+        <a data-bs-toggle="tooltip" data-bs-title="Token" href="https://optimistic.etherscan.io/address/0x3AA14Ed2d1A65a58DF0237fA84239F97fF4E9B42" target="_blank"><img src="/888/assets/OP grey logo.svg"></a>
       </div>
+      <img class="char" src="/888/assets/poopzter character.svg">
+      <div class="desc">Earn $BLOBZ every 60 seconds!</div>
+      <div id="connect" class="button btn-white"><img src="/888/assets/wallet_7920940.gif">Connect wallet</div>
+      <div id="bridge" class="button btn-white"><img src="/888/assets/eco-fuel_9284665.gif">Bridge to Optimism</div>
+      <div id="claim" class="button btn-black d-none">Claim 888 $BLOBZ</div>
+      <div id="claiming" class="button btn-white d-none"><img src="/888/assets/toilet_10468702.gif"> &nbsp;Processing</div>
+      <div id="balance" class="d-none">Balance 999999 $BLOBZ</div>
+      <div id="disconnect" class="button btn-green d-none">Disconnect 0xabc..789</div>
     </div>
-    <!-- modal -->
+    <!-- *** TODO *** change modal to fullscreen -->
     <div class="modal fade" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

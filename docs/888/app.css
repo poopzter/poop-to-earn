@@ -1,4 +1,98 @@
-html, body { height: 100%; }
-.links { margin: 10px 0px; }
-.links img { height: 16px; }
-p.card-text { max-height: 100px; overflow: scroll; }
+/* custom fonts */
+@font-face {
+  font-family: 'AlteHaasGrotesk';
+  src: url('/888/fonts/AlteHaasGroteskRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'AlteHaasGrotesk';
+  src: url('/888/fonts/AlteHaasGroteskBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'WeLovePeace';
+  src: url('/888/fonts/We Love Peace.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* screen */
+html, body {
+  height: 100%;
+}
+body {
+  font-family: 'AlteHaasGrotesk';
+}
+.app {
+  text-align: center;
+}
+.logo {
+  width: 50%;
+}
+.logo-sub {
+  color: #34cccb;
+  font-weight: bold;
+}
+.links img {
+  height: 16px;
+}
+.char {
+  width: 70%;
+  margin: 20px 0px;
+}
+.desc {
+  font-size: 12px;
+}
+.button {
+  text-align: left;
+  margin: 7px auto 0px;
+  font-weight: bold;
+  height: 45px;
+  width: 62%;
+  padding-top: 5px;
+  cursor: pointer;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.button.disabled {
+  opacity: 0.5;
+}
+.button img {
+  width: 35px;
+  margin: 0px 13px;
+}
+.btn-white {
+  color: #34cccb;
+  background-image: url('/888/assets/button white.svg');
+}
+.btn-black {
+  color: #34cccb;
+  background-image: url('/888/assets/button black.svg');
+}
+.btn-green {
+  color: #ffffff;
+  background-image: url('/888/assets/button green.svg');
+}
+#bridge {
+  font-size: 13px;
+}
+#claim {
+  text-align: center;
+  padding-top: 10px;
+}
+#claiming {
+  cursor: auto;
+}
+#balance {
+  color: #34cccb;
+  font-size: 12px;
+  margin-top: 7px;
+}
+#disconnect {
+  font-size: 13px;
+  text-align: center;
+  padding-top: 12px;
+}
