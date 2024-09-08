@@ -27,6 +27,7 @@ body {
 }
 .app {
   text-align: center;
+  width: 20rem;
 }
 .logo {
   width: 50%;
@@ -50,7 +51,7 @@ body {
   margin: 7px auto 0px;
   font-weight: bold;
   height: 45px;
-  width: 62%;
+  width: 200px;
   padding-top: 5px;
   cursor: pointer;
   background-size: 100% 100%;

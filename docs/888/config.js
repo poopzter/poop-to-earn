@@ -7,7 +7,7 @@ const CHAIN_EXPLORER  = "https://optimistic.etherscan.io";
 
 // contract
 const CONTRACT_ADDR   = "0xE977f3E90f4BEe490E8Eaea73D15DF2D00C36db5";
-const TOKEN_SYMBOL    = "BLOBz";
+const TOKEN_SYMBOL    = "BLOBZ";
 const TOKEN_ADDR      = "0x3AA14Ed2d1A65a58DF0237fA84239F97fF4E9B42";
 const TOKEN_DECIMALS  = 18;
 const MINT_GAS_RATE   = 1;
