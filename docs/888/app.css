@@ -40,7 +40,7 @@ body {
   height: 16px;
 }
 .char {
-  width: 50%;
+  width: 35%;
   margin: 20px 0px;
 }
 .desc {
@@ -51,7 +51,7 @@ body {
   margin: 7px auto 0px;
   font-weight: bold;
   height: 45px;
-  width: 200px;
+  width: 210px;
   padding-top: 5px;
   cursor: pointer;
   background-size: 100% 100%;
