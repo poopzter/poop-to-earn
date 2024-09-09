@@ -6,7 +6,7 @@ const CHAIN_SYMBOL    = "ETH";
 const CHAIN_EXPLORER  = "https://optimistic.etherscan.io";
 
 // contract
-const CONTRACT_ADDR   = "0xE977f3E90f4BEe490E8Eaea73D15DF2D00C36db5";
+const CONTRACT_ADDR   = "0x872fd80af15ad6c6C0aB4e645f3AD6a14E6cAd5F";
 const TOKEN_SYMBOL    = "BLOBZ";
 const TOKEN_ADDR      = "0x3AA14Ed2d1A65a58DF0237fA84239F97fF4E9B42";
 const TOKEN_DECIMALS  = 18;
