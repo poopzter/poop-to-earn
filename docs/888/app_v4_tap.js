@@ -232,15 +232,20 @@ function load_balance(addr) {
   });
 }
 
-// common
-function short_addr(addr) {
-  return addr.substr(0, 5) + '...' + addr.slice(-4);
-}
+// party
+party.resolvableShapes['toilet'] = `<img src='/888/assets/party_toilet.png' width='20'>`;
+party.resolvableShapes['tissue'] = `<img src='/888/assets/party_tissue.png' width='20'>`;
 function play_party_effect() {
   party.confetti(document.body, {
       count: 120,
       size: 2,
+      shapes: [ 'toilet', 'tissue' ],
   });
+}
+
+// common
+function short_addr(addr) {
+  return addr.substr(0, 5) + '...' + addr.slice(-4);
 }
 function format_num(num, digits=2) {
   let abb = '';
