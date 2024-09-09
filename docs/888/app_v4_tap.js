@@ -233,13 +233,12 @@ function load_balance(addr) {
 }
 
 // party
-party.resolvableShapes['toilet'] = `<img src='/888/assets/party_toilet.png' width='20'>`;
-party.resolvableShapes['tissue'] = `<img src='/888/assets/party_tissue.png' width='20'>`;
+party.resolvableShapes['blobz_coin'] = `<img src='/888/assets/BLOBZ coin.png' width='20'>`;
 function play_party_effect() {
   party.confetti(document.body, {
       count: 120,
       size: 2,
-      shapes: [ 'toilet', 'tissue' ],
+      shapes: [ 'blobz_coin' ],
   });
 }
 
