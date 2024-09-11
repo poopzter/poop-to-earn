@@ -97,3 +97,31 @@ body {
   text-align: center;
   padding-top: 12px;
 }
+
+/* dialog */
+.modal-content {
+  border: 1px solid #34cccb;
+}
+.modal-header {
+  border: none;
+  padding-bottom: 0px;
+  align-items: start;
+}
+.modal-header h5 {
+  font-size: 18px;
+  font-weight: bold;
+  width: 95%;
+  text-align: center;
+}
+.modal-header h5 img {
+  height: 50px;
+}
+.modal-footer {
+  justify-content: center;
+  border: none;
+  padding-top: 5px;
+}
+.modal-footer a img {
+  height: 45px;
+  cursor: pointer;
+}

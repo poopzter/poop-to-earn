@@ -9,6 +9,7 @@ let raw_chain_id = null;
 // main
 let tweet_modal = new bootstrap.Modal($('.modal')[0]);
 $('.btn-tweet').attr('href', 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(TWEET_TEXT));
+$('.btn-contact-team').attr('href', 'https://discord.gg/blobz');
 $('#bridge').click(_ => window.open('https://app.optimism.io/bridge/deposit'));
 
 // enable tooltips
@@ -18,7 +19,7 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 // connect button
 $('#connect').click(async _ => {
   if (window.ethereum === undefined) {
-    alert('Please open by MetaMask browser');
+    show_error_modal(null, 'Please open by MetaMask');
     return;
   }
 
@@ -83,7 +84,7 @@ $('#claim').click(async _ => {
   if (!ok) {
     $('#claim').removeClass('d-none');
     $('#claiming').addClass('d-none');
-    alert(msg);
+    show_error_modal(msg);
     return;
   }
   // claim
@@ -96,19 +97,22 @@ $('#claim').click(async _ => {
       console.log(receipt);
       $('#claiming').addClass('d-none');
       if (receipt.status != 1) { // 1 success, 0 revert
-        alert(JSON.stringify(receipt.toJSON()));
+        show_error_modal(JSON.stringify(receipt.toJSON()));
         $('#claim').removeClass('d-none');
         return;
       }
-      if (TWEET_TEXT) tweet_modal.show();
+      if (TWEET_TEXT) show_success_modal();
       play_party_effect();
       $('#claim').removeClass('d-none');
       load_balance(signer.address);
     })
     .catch(e => {
-      alert(e);
       $('#claim').removeClass('d-none');
       $('#claiming').addClass('d-none');
+
+      // TODO Please try again in 52 seconds.
+      if (e.reason != 'rejected') show_error_modal(e);
+
     });
 });
 
@@ -136,12 +140,20 @@ function is_chain_ready(callback) {
 }
 function handle_chain_exception(err) {
   let msg = `Please change network to [${CHAIN_NAME}] before claim.`;
-  alert(`${msg}\n\n----- Error Info -----\n[${err.code}] ${err.message}`);
+  let info = `[${err.code}] ${err.message}`
+  show_error_modal(info, msg);
   $('#connect').removeClass('disabled');
 }
 async function validate_chain() {
   // https://ethereum.stackexchange.com/questions/134610/metamask-detectethereumprovider-check-is-connected-to-specific-chain
-  let { chainId } = await provider.getNetwork();
+  let chainId = null;
+  try {
+    let network = await provider.getNetwork();
+    chainId = network.chainId;
+  }
+  catch(error) {
+    console.log('🚨', error);
+  }
   raw_chain_id = chainId;
   let ok = is_chain_ready();
   let msg = ok ? null : `Please change network to [${CHAIN_NAME}] before claim.`;
@@ -240,6 +252,29 @@ function play_party_effect() {
       size: 2,
       shapes: [ 'blobz_coin' ],
   });
+}
+
+// modal
+function show_success_modal() {
+  $('#h51').removeClass('d-none');
+  $('#h52').addClass('d-none');
+  $('.btn-tweet').removeClass('d-none');
+  $('.btn-contact-team').addClass('d-none');
+  tweet_modal.show();
+}
+function show_error_modal(info=null, msg="Oops! There're some errors") {
+  $('#h51').addClass('d-none');
+  $('#h52').removeClass('d-none');
+  $('#h52 span').html(msg);
+  $('.btn-tweet').addClass('d-none');
+  $('.btn-contact-team').removeClass('d-none');
+  tweet_modal.show();
+  // error info
+  $('#cry_face').off('click');
+  if (info) {
+    $('#cry_face').click(_ => alert(info));
+    console.log('🚨', info);
+  }
 }
 
 // common
