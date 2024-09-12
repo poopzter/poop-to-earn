@@ -163,9 +163,10 @@ body {
   width: 130px;
   float: right;
   margin-top: 40px;
+  font-size: 15px;
 }
 #poop_sec {
-  font-size: 18px;
+  font-size: 16px;
 }
 #poop_sec span {
   font-family: 'WeLovePeace';

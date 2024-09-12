@@ -317,7 +317,7 @@ function show_woohoo_screen() {
   $('.woohoo').removeClass('d-none');
   $('.cooldown').addClass('d-none');
 }
-function show_cooldown_screen(sec) {
+function show_cooldown_screen(sec=60) {
   $('#poop_sec span').html(sec);
   $('.app').addClass('d-none');
   $('.woohoo').addClass('d-none');
