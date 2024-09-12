@@ -19,8 +19,13 @@ $('#blobz').click(evt => new_win('https://x.com/BLOBz4844', evt));
 $('#poopz').click(evt => new_win('https://x.com/poopzter', evt));
 $('#spread').click(evt => new_win(tweet_url, evt));
 
-// main: delay
-// TODO
+// main: cooldown
+$('.cooldown').click(_ => show_app_screen());
+$('#tier_s').click(evt => new_win('https://opensea.io/collection/space-blobz-s', evt));
+$('#tier_a').click(evt => new_win('https://opensea.io/collection/space-blobz-a', evt));
+$('#tier_b').click(evt => new_win('https://opensea.io/collection/space-blobz-b', evt));
+$('#tier_c').click(evt => new_win('https://opensea.io/collection/space-blobz-c', evt));
+$('#boredtown_og').click(evt => new_win('https://opensea.io/collection/boredtown', evt));
 
 // enable tooltips
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
@@ -119,10 +124,16 @@ $('#claim').click(async _ => {
     .catch(e => {
       $('#claim').removeClass('d-none');
       $('#claiming').addClass('d-none');
-
-      // TODO Please try again in 52 seconds.
-      if (e.reason != 'rejected') show_error_modal(e);
-
+      // handle claim error
+      let reason = e.reason || '';
+      if (reason == 'rejected')
+        return; // user rejected, do nothing
+      let patt = /Please try again in (.+) seconds./;
+      let rr = reason.match(patt) || [];
+      if (rr.length == 2)
+        show_cooldown_screen(+rr[1]);
+      else
+        show_error_modal(e);
     });
 });
 
@@ -307,6 +318,7 @@ function show_woohoo_screen() {
   $('.cooldown').addClass('d-none');
 }
 function show_cooldown_screen(sec) {
+  $('#poop_sec span').html(sec);
   $('.app').addClass('d-none');
   $('.woohoo').addClass('d-none');
   $('.cooldown').removeClass('d-none');
