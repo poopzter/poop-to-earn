@@ -8,9 +8,19 @@ let raw_chain_id = null;
 
 // main
 let tweet_modal = new bootstrap.Modal($('.modal')[0]);
-$('.btn-tweet').attr('href', 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(TWEET_TEXT));
+let tweet_url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(TWEET_TEXT);
+$('.btn-tweet').attr('href', tweet_url);
 $('.btn-contact-team').attr('href', 'https://discord.gg/blobz');
 $('#bridge').click(_ => window.open('https://app.optimism.io/bridge/deposit'));
+
+// main: woohoo
+$('.woohoo').click(_ => show_app_screen());
+$('#blobz').click(evt => new_win('https://x.com/BLOBz4844', evt));
+$('#poopz').click(evt => new_win('https://x.com/poopzter', evt));
+$('#spread').click(evt => new_win(tweet_url, evt));
+
+// main: delay
+// TODO
 
 // enable tooltips
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
@@ -255,11 +265,18 @@ function play_party_effect() {
 }
 
 // modal
+let claim_success = false;
+$('.modal')[0].addEventListener('hidden.bs.modal', evt => {
+  // when success dialog is closed
+  if (!claim_success) return;
+  show_woohoo_screen();
+});
 function show_success_modal() {
   $('#h51').removeClass('d-none');
   $('#h52').addClass('d-none');
   $('.btn-tweet').removeClass('d-none');
   $('.btn-contact-team').addClass('d-none');
+  claim_success = true;
   tweet_modal.show();
 }
 function show_error_modal(info=null, msg="Oops! There're some errors") {
@@ -268,6 +285,7 @@ function show_error_modal(info=null, msg="Oops! There're some errors") {
   $('#h52 span').html(msg);
   $('.btn-tweet').addClass('d-none');
   $('.btn-contact-team').removeClass('d-none');
+  claim_success = false;
   tweet_modal.show();
   // error info
   $('#cry_face').off('click');
@@ -275,6 +293,23 @@ function show_error_modal(info=null, msg="Oops! There're some errors") {
     $('#cry_face').click(_ => alert(info));
     console.log('🚨', info);
   }
+}
+
+// screen
+function show_app_screen() {
+  $('.app').removeClass('d-none');
+  $('.woohoo').addClass('d-none');
+  $('.cooldown').addClass('d-none');
+}
+function show_woohoo_screen() {
+  $('.app').addClass('d-none');
+  $('.woohoo').removeClass('d-none');
+  $('.cooldown').addClass('d-none');
+}
+function show_cooldown_screen(sec) {
+  $('.app').addClass('d-none');
+  $('.woohoo').addClass('d-none');
+  $('.cooldown').removeClass('d-none');
 }
 
 // common
@@ -295,11 +330,6 @@ function format_num(num, digits=2) {
   if (num.endsWith('.0')) num = num.slice(0, -2); // 123.0 -> 123
   return `${num}${abb}`;
 }
-function show_msg(msg, auto=false) {
-  hide_connect();
-  $('#msg').text(msg).removeClass('d-none');
-  if (auto) show_disconnect();
-}
 function hide_connect() {
   return $('#connect').addClass('d-none');
 }
@@ -308,4 +338,7 @@ function show_disconnect() {
   if (signer != null) btn.text(`Disconnect ${short_addr(signer.address)}`);
   return btn;
 }
-let show_claimed = _ => show_msg('Claimed');
+function new_win(url, evt=null) {
+  window.open(url);
+  if (evt) evt.stopPropagation();
+}
