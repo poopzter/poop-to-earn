@@ -28,33 +28,3 @@ contract Poop is ERC20, ERC20Bridgeable, Ownable {
         _mint(to, amount);
     }
 }
-
-contract Factory {
-    event Deployed(address addr);
-
-    function deploy(uint256 _salt, address _owner) external {
-        address addr;
-        bytes memory bytecode = type(Poop).creationCode;
-        bytes memory initCode = abi.encodePacked(bytecode, abi.encode(_owner));
-
-        assembly {
-            addr := create2(0, add(initCode, 0x20), mload(initCode), _salt)
-        }
-        require(addr != address(0), "Deployment failed");
-
-        emit Deployed(addr);
-    }
-
-    function computeAddress(uint256 _salt, address _deployer, address _owner) external pure returns (address) {
-        bytes memory bytecode = type(Poop).creationCode;
-        bytes memory initCode = abi.encodePacked(bytecode, abi.encode(_owner));
-        bytes32 bytecodeHash = keccak256(initCode);
-
-        return address(uint160(uint(keccak256(abi.encodePacked(
-            bytes1(0xff),
-            _deployer,
-            _salt,
-            bytecodeHash
-        )))));
-    }
-}
